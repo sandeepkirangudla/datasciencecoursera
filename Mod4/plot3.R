@@ -1,0 +1,10 @@
+library(sqldf); library(dplyr); library(ggplot2); library(jpeg)
+df <- read.csv(file = "df.csv")
+df <- df[-1]
+df$datetime <- as.POSIXct(paste(df$Date, df$Time), format="%Y-%m-%d %H:%M:%S")
+png("plot3.png", width = 480, height = 480)
+plot(x = df$datetime, y = df$Sub_metering_1, ylab = 'Energy Sub metering', type = 'l', xlab = '')
+lines(x = df$datetime, y = df$Sub_metering_2, type = 'l', xlab = '',col = 'red', add=TRUE)
+lines(x = df$datetime, y = df$Sub_metering_3, type = 'l', xlab = '',col = 'blue', add=TRUE)
+legend('topright', legend=c('Sub_metering_1', 'Sub_metering_2', 'Sub_metering_3'), col=c("black","red","blue"), lty = 1, cex = 0.8)
+dev.off()
