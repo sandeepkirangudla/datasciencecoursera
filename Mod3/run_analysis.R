@@ -4,7 +4,7 @@ download.file(url, destfile = 'data.zip')
 unzip("data.zip")
 header <- read.table('Mod3/UCI HAR Dataset/features.txt', header = F, stringsAsFactors = F)
 req_cols <- grep(paste('mean()|std()',collapse="|"), header[, 2])
-
+# read data
 df.test <- fread(file = 'Mod3/UCI HAR Dataset/test/X_test.txt', header = F, blank.lines.skip = T, stringsAsFactors = F, select = req_cols)
 names(df.test) <- header[req_cols, 2]
 df.test.y <- fread(file = 'Mod3/UCI HAR Dataset/test/y_test.txt', header = F, blank.lines.skip = T, stringsAsFactors = F, col.names = ('Activity_Name'))
